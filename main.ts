@@ -46,45 +46,70 @@ function left5 () {
         basic.pause(10)
     }
 }
+let i = 0
+let max = 0
+let X2Y1 = 0
 let X1Y1 = 0
 let X1Y0 = 0
 let X0Y0 = 0
 let list: number[] = []
 let m = 0
 led.enable(false)
+TM1650.on()
 let X = 190
 let Y = 250
 ModuleWorld_PWM.Servo(ModuleWorld_PWM.mwServoNum.P1, X)
 ModuleWorld_PWM.Servo(ModuleWorld_PWM.mwServoNum.P10, Y)
 basic.pause(1000)
 basic.forever(function () {
-    let X0Y1 = 0
     ModuleWorld_PWM.Servo(ModuleWorld_PWM.mwServoNum.P1, X)
     ModuleWorld_PWM.Servo(ModuleWorld_PWM.mwServoNum.P1, Y)
+    TM1650.showNumber(100)
+    TM1650.on()
     if (ModuleWorld_Digital.Button(ModuleWorld_Digital.mwDigitalNum.P0P1, ModuleWorld_Digital.enButton.Press)) {
+        let X0Y1 = 0
+        list = [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+        ]
+        ModuleWorld_PWM.Servo(ModuleWorld_PWM.mwServoNum.P1, 190)
+        ModuleWorld_PWM.Servo(ModuleWorld_PWM.mwServoNum.P10, 300)
+        basic.pause(200)
+        X0Y0 = ModuleWorld_Analog.Light(ModuleWorld_Analog.mwAnalogNum.AP2P3)
+        list[0] = X0Y0
+        left_1()
+        ModuleWorld_PWM.Servo(ModuleWorld_PWM.mwServoNum.P1, 300)
+        X0Y0 = ModuleWorld_Analog.Light(ModuleWorld_Analog.mwAnalogNum.AP2P3)
+        list[0] = X1Y0
+        left_2()
+        X1Y0 = ModuleWorld_Analog.Light(ModuleWorld_Analog.mwAnalogNum.AP2P3)
+        list[2] = X0Y1
+        left_3()
+        ModuleWorld_PWM.Servo(ModuleWorld_PWM.mwServoNum.P10, 240)
+        X1Y1 = X0Y1
+        list[3] = ModuleWorld_Analog.Light(ModuleWorld_Analog.mwAnalogNum.AP2P3)
+        left_4()
+        ModuleWorld_PWM.Servo(ModuleWorld_PWM.mwServoNum.P10, 240)
+        X2Y1 = X2Y1
+        ModuleWorld_PWM.Servo(ModuleWorld_PWM.mwServoNum.P1, 130)
+        left5()
+        X2Y1 = ModuleWorld_Analog.Light(ModuleWorld_Analog.mwAnalogNum.AP2P3)
+        list[5] = X0Y1
+        left_6()
+        ModuleWorld_PWM.Servo(ModuleWorld_PWM.mwServoNum.P10, 300)
+        max = list[0]
+        i = 0
+        while (i < 6) {
+            i = i + 1
+        }
+    }
+    if (list[1] == max) {
+    	
+    } else if (false) {
     	
     }
-    list = [
-    0,
-    1,
-    2,
-    3,
-    4,
-    5
-    ]
-    ModuleWorld_PWM.Servo(ModuleWorld_PWM.mwServoNum.P1, 190)
-    ModuleWorld_PWM.Servo(ModuleWorld_PWM.mwServoNum.P10, 300)
-    basic.pause(200)
-    X0Y0 = ModuleWorld_Analog.Light(ModuleWorld_Analog.mwAnalogNum.AP2P3)
-    list[0] = X0Y0
-    left_1()
-    ModuleWorld_PWM.Servo(ModuleWorld_PWM.mwServoNum.P1, 300)
-    X0Y0 = ModuleWorld_Analog.Light(ModuleWorld_Analog.mwAnalogNum.AP2P3)
-    list[0] = X1Y0
-    left_2()
-    X1Y0 = ModuleWorld_Analog.Light(ModuleWorld_Analog.mwAnalogNum.AP2P3)
-    list[2] = X0Y1
-    left_3()
-    ModuleWorld_PWM.Servo(ModuleWorld_PWM.mwServoNum.P10, 240)
-    X1Y1 = ModuleWorld_Analog.Light(ModuleWorld_Analog.mwAnalogNum.AP2P3)
 })

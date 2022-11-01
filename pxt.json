@@ -6,7 +6,8 @@
         "radio": "*",
         "microphone": "*",
         "Module-World": "github:YahboomTechnology/Module-World#4bad43a8128f8529d911b0033e7062d7972a5cf4",
-        "SuperBit": "github:lzty634158/SuperBit#0a0d6cd2c18804f6b56e944d0c7ff7bd91473ec8"
+        "SuperBit": "github:lzty634158/SuperBit#0a0d6cd2c18804f6b56e944d0c7ff7bd91473ec8",
+        "TM1650": "github:makecode-extensions/tm1650#v1.1.0"
     },
     "files": [
         "main.blocks",
